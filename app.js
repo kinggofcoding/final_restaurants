@@ -9,6 +9,9 @@ const messageHandler = require('./middlewares/message-handler')
 const errorHandler = require('./middlewares/error-handler')
 const session = require('express-session')
 
+if (process.env.NODE_ENV === 'development') {
+	require('dotenv').config()
+}
 
 // express初始化設定: template,static file, view path,post數據解析
 app.use(express.urlencoded({ extended: true }))
@@ -20,7 +23,7 @@ app.use(express.static("public"))
 
 // 設置session存放於Server
 app.use(session({
-  secret: 'This is secret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }))
