@@ -8,6 +8,7 @@ const flash = require('connect-flash')
 const messageHandler = require('./middlewares/message-handler')
 const errorHandler = require('./middlewares/error-handler')
 const session = require('express-session')
+const passport = require('./config/passport')
 
 if (process.env.NODE_ENV === 'development') {
 	require('dotenv').config()
@@ -30,6 +31,11 @@ app.use(session({
 
 
 app.use(flash()) //設定 flash message
+
+// 設定passport
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(messageHandler) //設定 middleware: message handle
 app.use('/', router) //設定 router
 app.use(errorHandler) //設定 middleware: error handle
