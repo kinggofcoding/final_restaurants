@@ -26,4 +26,11 @@ router.post(
   })
 )
 
+router.post('logout', (req, res, next) => {
+  req.logout((error) => {
+    if (error) return next(error)
+    return res.redirect('/login')
+  })
+})
+
 module.exports = router

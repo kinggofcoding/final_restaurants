@@ -25,12 +25,18 @@
         </a>
       </div>
       <div class="p-2 d-flex">
+        {{#if isAuth}}
+        <form action="/logout" class="m-2">
+          <input class="btn btn-danger" type="submit" value="Logout">
+        </form> 
+        {{else}}
         <form action="/login" class="m-2">
           <input class="btn btn-primary" type="submit" value="Login">
         </form>
         <form action="/register" class="m-2">
           <input class="btn btn-secondary" type="submit" value="Sign Up">
-        </form>
+        </form>         
+        {{/if}}
       </div>
     </nav>
     

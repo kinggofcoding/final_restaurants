@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
     const keyword = req.query.keyword?.trim() // 搜尋關鍵字
     const sortState = req.query.sort || "排序" // 排序方式
     const orderBy = [] // 資料排序的參數
-
+    const isAuth = req.isAuthenticated() //確認是否登入
     // 確認排序的方式並設定參數
     switch (sortState) {
       case "A-Z":
@@ -68,7 +68,8 @@ router.get("/", async (req, res, next) => {
          cssPath: cssIndex,
          restaurants,
          sortState,
-         keyword
+         keyword,
+         isAuth
     })
   } catch (error) {
     error.Message = '資料取得失敗'
