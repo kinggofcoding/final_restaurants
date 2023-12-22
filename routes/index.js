@@ -1,9 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const restaurant = require("./restaurant")
-const passport = require('passport')
+const user = require("./user")
+const passport = require("passport")
+const authHandler = require("../middlewares/auth-handler")
 
-router.use("/restaurants", restaurant)
+router.use("/restaurants", authHandler, restaurant)
+router.use("/user", user)
 
 router.get("/", (req, res) => {
   res.redirect("/restaurants")
@@ -26,10 +29,10 @@ router.post(
   })
 )
 
-router.post('logout', (req, res, next) => {
+router.post("logout", (req, res, next) => {
   req.logout((error) => {
     if (error) return next(error)
-    return res.redirect('/login')
+    return res.redirect("/login")
   })
 })
 
