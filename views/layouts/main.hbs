@@ -11,7 +11,7 @@
 <body>
   <header>
   <!-- navigation -->
-    <nav class='navbar navbar-light bg-light'>
+    <nav class='navbar navbar-light bg-light d-flex justify-content-between'>
       <div class='container'>
         <a class='navbar-brand' href='/restaurants'>
           <img
@@ -24,7 +24,16 @@
           我的餐廳清單
         </a>
       </div>
+      <div class="p-2 d-flex">
+        <form action="/login" class="m-2">
+          <input class="btn btn-primary" type="submit" value="Login">
+        </form>
+        <form action="/register" class="m-2">
+          <input class="btn btn-secondary" type="submit" value="Sign Up">
+        </form>
+      </div>
     </nav>
+    
     <div class='banner'></div>
   </header>
     {{{ body }}}
