@@ -6,7 +6,7 @@ const passport = require("passport")
 const authHandler = require("../middlewares/auth-handler")
 
 router.use("/restaurants", authHandler, restaurant)
-router.use("/user", user)
+router.use("/users", user)
 
 router.get("/", (req, res) => {
   res.redirect("/restaurants")

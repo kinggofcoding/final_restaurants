@@ -29,7 +29,6 @@ router.post('/', async (req, res, next) => {
             email,
             password: hash
         })
-
         if (user) {
             req.flash('success', '註冊成功')
             res.redirect('/login')
