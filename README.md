@@ -2,7 +2,7 @@
 A simple web application for restaurant fanatic
 
 ## Features
-- User Login/Register
+- User Login/Register,Login with Facebook
 - Create,Read,Update,Delete restaurant data
 - Searching restaurants
 - Sort data by A-Z,Z-A,Category,Location
@@ -36,7 +36,6 @@ Create database restaurant;
 ```
 npm run migrate
 npm run seed
-
 ```
 6.Launch the application
 
