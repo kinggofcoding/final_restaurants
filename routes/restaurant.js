@@ -16,6 +16,7 @@ router.get("/", async (req, res, next) => {
     const sortState = req.query.sort || "排序" // 排序方式
     const orderBy = [] // 資料排序的參數
     const isAuth = req.isAuthenticated() //確認是否登入
+    const userId = req.user.id
     // 確認排序的方式並設定參數
     switch (sortState) {
       case "A-Z":
@@ -61,7 +62,7 @@ router.get("/", async (req, res, next) => {
         attributes: ["id" ,"name", "category", "image", "rating"],
         raw: true,
         order: [orderBy],
-        where: searchByKeyword
+        where: { userId } ,searchByKeyword
     })
 
     res.render("index", {
@@ -80,7 +81,8 @@ router.get("/", async (req, res, next) => {
 // 新增餐廳頁面
 router.get("/new", (req, res, next) => {
   try {
-    res.render("new")
+    const isAuth = req.isAuthenticated() //確認是否登入
+    res.render("new", { isAuth })
   } catch (error) {
     error.Message = '讀取頁面失敗'
     next(error)
@@ -91,8 +93,9 @@ router.get("/new", (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id
+    const isAuth = req.isAuthenticated() //確認是否登入
     const restaurant = await Restaurant.findByPk(id, { raw: true })
-    res.render("show", { cssPath: cssShow, restaurant })
+    res.render("show", { cssPath: cssShow, restaurant, isAuth })
   } catch (error) {
     error.Message = '資料取得失敗'
     next(error)
@@ -123,6 +126,7 @@ router.post("/", async (req, res, next) => {
       phone,
       rating: parseFloat(rating),
       description,
+      userId
     })
     if (restaurant) {
       res.redirect("/restaurants")
@@ -137,8 +141,9 @@ router.post("/", async (req, res, next) => {
 router.get("/:id/edit", async (req, res, next) => {
   try {
     const id = req.params.id
+    const isAuth = req.isAuthenticated() //確認是否登入
     const restaurant = await Restaurant.findByPk(id, { raw: true })
-    res.render("edit", { restaurant })
+    res.render("edit", { restaurant, isAuth })
   } catch (error) {
     error.Message = '讀取頁面失敗'
     next(error)
