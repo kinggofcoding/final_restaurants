@@ -15,6 +15,7 @@ module.exports = {
           google_map: restaurant.google_map,
           rating: restaurant.rating,
           description: restaurant.description,
+          userId: restaurant.userId,
           createdAt: new Date(),
           updatedAt: new Date()
         })
