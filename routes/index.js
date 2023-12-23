@@ -4,9 +4,11 @@ const restaurant = require('./restaurant')
 const user = require('./user')
 const passport = require('passport')
 const authHandler = require('../middlewares/auth-handler')
+const oauth = require('./oauth')
 
 router.use('/restaurants', authHandler, restaurant)
 router.use('/users', user)
+router.use('/oauth', oauth)
 
 router.get('/', (req, res) => {
   res.redirect('/restaurants')
@@ -23,20 +25,6 @@ router.get('/login', (req, res) => {
 router.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/restaurants',
-    failureRedirect: '/login',
-    failureFlash: true,
-  })
-)
-
-router.get(
-  '/login/facebook',
-  passport.authenticate('facebook', { scope: ['email'] })
-)
-
-router.get(
-  '/oauth2/redirect/facebook',
-  passport.authenticate('facebook', {
     successRedirect: '/restaurants',
     failureRedirect: '/login',
     failureFlash: true,
