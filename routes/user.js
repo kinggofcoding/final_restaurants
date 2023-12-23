@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
 
+
+// 使用者註冊
 router.post('/', async (req, res, next) => {
     const { username, email, password, confirmPassword } = req.body
 

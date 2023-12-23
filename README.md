@@ -2,6 +2,7 @@
 A simple web application for restaurant fanatic
 
 ## Features
+- User Login/Register
 - Create,Read,Update,Delete restaurant data
 - Searching restaurants
 - Sort data by A-Z,Z-A,Category,Location
@@ -11,12 +12,12 @@ A simple web application for restaurant fanatic
 1.Clone the repository
 
 ```
-git clone https://github.com/kinggofcoding/new_restaurants.git
+git clone https://github.com/kinggofcoding/final_restaurants.git
 ```
 2.Move to the new_restaurants directory
 
 ```
-cd new_restaurants
+cd final_restaurants
 ```
 3.Install npm packages
 
@@ -33,8 +34,8 @@ Create database restaurant;
 5.DB migrate
 
 ```
-npx sequelize db:migrate
-npx sequelize db:seed:all
+npm run migrate
+npm run seed
 
 ```
 6.Launch the application

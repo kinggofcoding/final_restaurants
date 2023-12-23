@@ -14,14 +14,17 @@ router.get('/', (req, res) => {
   res.redirect('/restaurants')
 })
 
+// 註冊頁面
 router.get('/register', (req, res) => {
   res.render('register')
 })
 
+// 登入頁面
 router.get('/login', (req, res) => {
   res.render('login')
 })
 
+// 使用者登入
 router.post(
   '/login',
   passport.authenticate('local', {
@@ -31,6 +34,7 @@ router.post(
   })
 )
 
+// 使用者登出
 router.post('/logout', (req, res, next) => {
   req.logout((error) => {
     if (error) return next(error)
