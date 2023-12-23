@@ -105,6 +105,8 @@ router.get("/:id", async (req, res, next) => {
 // 新增餐廳
 router.post("/", async (req, res, next) => {
   try {
+    const userId = req.user.id
+    console.log(userId)
     const {
       name,
       name_en,
